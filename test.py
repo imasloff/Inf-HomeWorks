@@ -11,29 +11,28 @@ class TestStack(unittest.TestCase):
 
     def test_push(self):
         self.st1.push(1)
-        self.assertIs(self.st1.cur_top.data, 1)
-        self.assertIs(self.st1.cur_top.prev, None)
-        self.assertIs(self.st1.size, 1)
+        self.assertIs(self.st1.top(), 1)
+        self.assertIs(self.st1.get_size(), 1)
         self.st1.push(True)
-        self.assertIs(self.st1.cur_top.data, True)
-        self.assertIs(self.st1.size, 2)
+        self.assertIs(self.st1.top(), True)
+        self.assertIs(self.st1.get_size(), 2)
         self.st1.push('IVAN')
-        self.assertIs(self.st1.cur_top.data, 'IVAN')
-        self.assertIs(self.st1.size, 3)
+        self.assertIs(self.st1.top(), 'IVAN')
+        self.assertIs(self.st1.get_size(), 3)
 
     def test_pop(self):
         self.st1.push(1)
         self.st1.push(True)
         self.st1.push('IVAN')
-        self.assertIs(self.st1.cur_top.data, 'IVAN')
+        self.assertIs(self.st1.top(), 'IVAN')
         self.assertIs(self.st1.pop(), 'IVAN')
-        self.assertIs(self.st1.cur_top.data, True)
+        self.assertIs(self.st1.top(), True)
         self.assertIs(self.st1.pop(), True)
-        self.assertIs(self.st1.cur_top.data, 1)
+        self.assertIs(self.st1.top(), 1)
         self.assertIs(self.st1.pop(), 1)
-        self.assertIs(self.st1.cur_top, None)
+        self.assertIs(self.st1.top(), None)
         self.assertIs(self.st1.pop(), None)
-        self.assertIs(self.st1.cur_top, None)
+        self.assertIs(self.st1.top(), None)
 
     def test_top(self):
         self.st1.push(1)
@@ -66,8 +65,8 @@ class TestStack(unittest.TestCase):
         self.st1.push(True)
         self.st1.push('IVAN')
         self.st1.clear()
-        self.assertIs(self.st1.size, 0)
-        self.assertIs(self.st1.cur_top, None)
+        self.assertIs(self.st1.get_size(), 0)
+        self.assertIs(self.st1.top(), None)
 
 if __name__ == '__main__':
     unittest.main()
